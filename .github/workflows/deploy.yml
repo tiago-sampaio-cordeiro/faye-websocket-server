@@ -1,0 +1,27 @@
+name: Deploy to remote server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run deploy commands
+        run: |
+          ssh -o StrictHostKeyChecking=no deploy@159.223.150.26 << 'EOF'
+            cd /home/deploy/app
+            git pull origin main
+            docker compose up -d --build
+          EOF
