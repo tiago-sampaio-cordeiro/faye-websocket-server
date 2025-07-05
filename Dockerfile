@@ -9,7 +9,7 @@ RUN apt update && \
 WORKDIR /usr/src/app
 
 # copia o arquivo Gemfile para dentro do container
-COPY Gemfile ./
+COPY Gemfile Gemfile.lock ./
 
 #instala gems
 RUN bundle install
@@ -24,7 +24,9 @@ USER appuser
 EXPOSE 9292
 
 # Comando para iniciar o servidor
-CMD ["thin", "start", "--rackup", "config.ru", "--address", "0.0.0.0", "--port", "9292"]
+CMD ["bundle", "exec", "puma", "-b", "tcp://0.0.0.0:9292"]
+
+
 
 
 

@@ -9,9 +9,12 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     method_source (1.1.0)
+    nio4r (2.7.4)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    puma (6.6.0)
+      nio4r (~> 2.0)
     rack (2.2.10)
     thin (1.8.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -23,12 +26,12 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
-  ruby
   x86_64-linux
 
 DEPENDENCIES
-  faye-websocket (~> 0.11.3)
+  faye-websocket
   pry
+  puma
   rack (~> 2.2.0)
   thin
 

@@ -1,9 +1,10 @@
 require 'faye/websocket'
 require 'eventmachine'
-require 'thin'
+require 'puma'
+require 'rack'
 require 'json'
 
-Faye::WebSocket.load_adapter('thin')
+# Faye::WebSocket.load_adapter('puma')
 
 App = lambda do |env|
   if Faye::WebSocket.websocket?(env)
