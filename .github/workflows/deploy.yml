@@ -22,10 +22,6 @@ jobs:
           ssh-add ~/.ssh/id_ed25519
           ssh-keyscan -H 159.223.150.26 >> ~/.ssh/known_hosts
 
-
-
-
-
       - name: Run deploy commands
         run: |
           ssh -o StrictHostKeyChecking=no deploy@159.223.150.26 << 'EOF'
